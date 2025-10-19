@@ -96,7 +96,7 @@ struct AddItemView: View {
                 if isLoading {
                     ProgressView("Loading metadata...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black.opacity(0.3))
+                        .background(Color.vaultPrimary.opacity(0.3))
                 }
             }
             .alert("Error", isPresented: $showingError) {
@@ -149,8 +149,8 @@ struct AddItemView: View {
         let item = ContentItem(
             title: title,
             sourceURL: url,
-            category: selectedCategory,
-            sourceType: parsedMetadata?.sourceType ?? .unknown
+            category: selectedCategory.rawValue,
+            sourceType: (parsedMetadata?.sourceType ?? .unknown).rawValue
         )
         
         item.itemDescription = description.isEmpty ? nil : description

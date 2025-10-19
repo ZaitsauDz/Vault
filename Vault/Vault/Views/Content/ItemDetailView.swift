@@ -34,7 +34,7 @@ struct ItemDetailView: View {
                                 .aspectRatio(contentMode: .fit)
                         } placeholder: {
                             Rectangle()
-                                .fill(Color.gray.opacity(0.2))
+                                .fill(Color.vaultPrimary.opacity(0.2))
                                 .overlay(
                                     ProgressView()
                                 )
@@ -65,17 +65,19 @@ struct ItemDetailView: View {
                         } else if let description = item.itemDescription {
                             Text(description)
                                 .font(.body)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.vaultSecondaryText)
                         }
                         
                         // Metadata
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
-                                Image(systemName: item.sourceType.icon)
-                                    .foregroundColor(.blue)
-                                Text(item.sourceType.displayName)
+
+                                let sourceType = SourceType(rawValue: item.sourceType) ?? .unknown
+                                Image(systemName: sourceType.icon)
+                                    .foregroundColor(.vaultPrimary)
+                                Text(sourceType.displayName)
                                     .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(.vaultText)
                             }
                             
                             HStack {
@@ -83,16 +85,16 @@ struct ItemDetailView: View {
                                     .foregroundColor(.blue)
                                 Text("Added \(item.dateAdded, style: .relative)")
                                     .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(.vaultSecondaryText)
                             }
                             
                             if let subcategory = item.subcategory {
                                 HStack {
                                     Image(systemName: "tag")
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.vaultPrimary)
                                     Text(subcategory)
                                         .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                                        .foregroundColor(.vaultSecondaryText)
                                 }
                             }
                         }
@@ -110,9 +112,9 @@ struct ItemDetailView: View {
                                 Image(systemName: "arrow.up.right")
                             }
                             .font(.subheadline)
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color.vaultSecondary)
                             .padding()
-                            .background(Color.blue.opacity(0.1))
+                            .background(Color.vaultSecondary.opacity(0.1))
                             .cornerRadius(8)
                         }
                     }
@@ -188,7 +190,8 @@ struct ItemDetailView: View {
     let item = ContentItem(
         title: "Sample Item",
         sourceURL: URL(string: "https://example.com")!,
-        category: .watch
+        category: "watch",
+        sourceType: "YouTube"
     )
     item.itemDescription = "This is a sample description for the item."
     item.imageURL = URL(string: "https://picsum.photos/400/300")

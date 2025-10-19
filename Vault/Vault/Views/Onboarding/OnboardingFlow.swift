@@ -18,7 +18,7 @@ struct OnboardingFlow: View {
             HStack {
                 ForEach(0..<totalSteps, id: \.self) { step in
                     Circle()
-                        .fill(step <= currentStep ? Color.blue : Color.gray.opacity(0.3))
+                        .fill(step <= currentStep ? Color.vaultSecondary : Color.vaultPrimary.opacity(0.3))
                         .frame(width: 8, height: 8)
                 }
             }
@@ -55,7 +55,7 @@ struct OnboardingFlow: View {
                             currentStep -= 1
                         }
                     }
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
                 }
                 
                 Spacer()
@@ -71,9 +71,9 @@ struct OnboardingFlow: View {
                     }
                 }
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(.vaultBackground)
                 .frame(width: 120, height: 44)
-                .background(Color.blue)
+                .background(Color.vaultSecondary)
                 .cornerRadius(22)
             }
             .padding(.horizontal, 32)
@@ -102,8 +102,8 @@ struct WelcomeStep: View {
         VStack(spacing: 32) {
             Image(systemName: "square.stack.3d.up.fill")
                 .font(.system(size: 100))
-                .foregroundColor(.blue)
-            
+                .foregroundColor(.vaultPrimary)
+
             VStack(spacing: 16) {
                 Text("Welcome to Vault")
                     .font(.largeTitle)
@@ -112,7 +112,7 @@ struct WelcomeStep: View {
                 
                 Text("Organize your digital content across four categories: Watch Later, Read Later, Buy Later, and Cook Later.")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }
@@ -135,8 +135,8 @@ struct LanguageSelectionStep: View {
         VStack(spacing: 32) {
             Image(systemName: "globe")
                 .font(.system(size: 80))
-                .foregroundColor(.blue)
-            
+                .foregroundColor(.vaultPrimary)
+
             VStack(spacing: 16) {
                 Text("Choose Your Language")
                     .font(.largeTitle)
@@ -145,7 +145,7 @@ struct LanguageSelectionStep: View {
                 
                 Text("Select your preferred language for the app interface.")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }
@@ -173,8 +173,8 @@ struct NotificationPreferencesStep: View {
         VStack(spacing: 32) {
             Image(systemName: "bell")
                 .font(.system(size: 80))
-                .foregroundColor(.blue)
-            
+                .foregroundColor(.vaultPrimary)
+
             VStack(spacing: 16) {
                 Text("Notification Preferences")
                     .font(.largeTitle)
@@ -183,7 +183,7 @@ struct NotificationPreferencesStep: View {
                 
                 Text("Get gentle reminders to engage with your saved content.")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }
@@ -222,7 +222,7 @@ struct FeatureRow: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundColor(.blue)
+                .foregroundColor(.vaultPrimary)
                 .frame(width: 30)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -230,7 +230,7 @@ struct FeatureRow: View {
                     .font(.headline)
                 Text(description)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
             }
             
             Spacer()
@@ -252,24 +252,24 @@ struct LanguageOption: View {
                 VStack(alignment: .leading) {
                     Text(language.displayName)
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.vaultText)
                 }
                 
                 Spacer()
                 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(.vaultPrimary)
                         .font(.title2)
                 }
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? Color.blue.opacity(0.1) : Color(.systemGray6))
+                    .fill(isSelected ? Color.vaultSecondary.opacity(0.1) : Color.vaultSecondaryText)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                            .stroke(isSelected ? Color.vaultSecondary : Color.clear, lineWidth: 2)
                     )
             )
         }
@@ -287,19 +287,19 @@ struct FrequencyOption: View {
             HStack {
                 Text(frequency.displayName)
                     .font(.body)
-                    .foregroundColor(.primary)
-                
+                    .foregroundColor(.vaultText)
+
                 Spacer()
                 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.blue)
+                        .foregroundColor(.vaultPrimary)
                 }
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(isSelected ? Color.blue.opacity(0.1) : Color(.systemGray6))
+                    .fill(isSelected ? Color.vaultSecondary.opacity(0.1) : Color.vaultSecondaryText)
             )
         }
         .buttonStyle(PlainButtonStyle())

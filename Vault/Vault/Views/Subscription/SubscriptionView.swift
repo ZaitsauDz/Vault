@@ -16,7 +16,7 @@ struct SubscriptionView: View {
                     VStack(spacing: 16) {
                         Image(systemName: "crown.fill")
                             .font(.system(size: 60))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.vaultPrimary)
                         
                         Text("Upgrade to Pro")
                             .font(.largeTitle)
@@ -24,7 +24,7 @@ struct SubscriptionView: View {
                         
                         Text("Unlock unlimited storage and premium features")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.vaultSecondaryText)
                             .multilineTextAlignment(.center)
                     }
                     .padding(.top, 20)
@@ -74,8 +74,8 @@ struct SubscriptionView: View {
                         }
                     }
                     .font(.subheadline)
-                    .foregroundColor(.blue)
-                    
+                    .foregroundColor(.vaultPrimary)
+
                     Spacer(minLength: 20)
                 }
             }
@@ -105,7 +105,7 @@ struct ProFeatureRow: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundColor(.blue)
+                .foregroundColor(.vaultPrimary)
                 .frame(width: 30)
             
             Text(text)
@@ -128,10 +128,10 @@ struct SubscriptionProductCard: View {
                 Text("MOST POPULAR")
                     .font(.caption)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.vaultBackground)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 4)
-                    .background(Color.blue)
+                    .background(Color.vaultText)
                     .cornerRadius(12)
             }
             
@@ -142,13 +142,13 @@ struct SubscriptionProductCard: View {
                 
                 Text(product.description)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.vaultSecondaryText)
                     .multilineTextAlignment(.center)
                 
                 Text(product.displayPrice)
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.vaultText)
             }
             
             Button(action: purchase) {
@@ -160,20 +160,20 @@ struct SubscriptionProductCard: View {
                         .fontWeight(.semibold)
                 }
             }
-            .foregroundColor(.white)
+            .foregroundColor(.vaultBackground)
             .frame(maxWidth: .infinity)
             .frame(height: 44)
-            .background(Color.blue)
+            .background(Color.vaultPrimary)
             .cornerRadius(22)
             .disabled(isPurchasing)
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemGray6))
+                .fill(Color.vaultPrimary)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(isPopular ? Color.blue : Color.clear, lineWidth: 2)
+                        .stroke(isPopular ? Color.vaultSecondary : Color.clear, lineWidth: 2)
                 )
         )
     }

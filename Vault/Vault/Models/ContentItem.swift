@@ -1,5 +1,5 @@
-import SwiftData
 import Foundation
+import SwiftData
 
 @Model
 final class ContentItem {
@@ -8,18 +8,19 @@ final class ContentItem {
     var itemDescription: String?
     var imageURL: URL?
     var sourceURL: URL
-    var category: ContentCategory
-    var sourceType: SourceType
+    var category: String
+    var sourceType: String
     var dateAdded: Date
     var dateModified: Date
     var isCompleted: Bool
     var customNotes: String?
     var subcategory: String?
     
-    init(title: String, 
-         sourceURL: URL, 
-         category: ContentCategory,
-         sourceType: SourceType = .unknown) {
+    init(title: String,
+         sourceURL: URL,
+         category: String,
+         sourceType: String)
+    {
         self.id = UUID()
         self.title = title
         self.sourceURL = sourceURL
@@ -32,10 +33,10 @@ final class ContentItem {
 }
 
 enum ContentCategory: String, Codable, CaseIterable {
-    case watch = "watch"
-    case read = "read"
-    case buy = "buy"
-    case cook = "cook"
+    case watch
+    case read
+    case buy
+    case cook
     
     var displayName: String {
         switch self {
@@ -57,11 +58,11 @@ enum ContentCategory: String, Codable, CaseIterable {
 }
 
 enum SourceType: String, Codable, CaseIterable {
-    case youtube = "youtube"
-    case instagram = "instagram"
-    case amazon = "amazon"
-    case appleBooks = "appleBooks"
-    case unknown = "unknown"
+    case youtube
+    case instagram
+    case amazon
+    case appleBooks
+    case unknown
     
     var displayName: String {
         switch self {

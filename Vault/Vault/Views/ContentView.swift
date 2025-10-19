@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
@@ -18,9 +18,11 @@ struct ContentView: View {
             case .authenticating:
                 ProgressView("Authenticating...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(.systemBackground))
+                    .background(Color.vaultBackground)
             case .unauthenticated:
                 AuthenticationView()
+            case .guest:
+                MainTabView()
             }
         }
         .onAppear {

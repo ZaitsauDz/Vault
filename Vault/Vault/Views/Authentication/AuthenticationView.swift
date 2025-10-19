@@ -15,8 +15,8 @@ struct AuthenticationView: View {
                 VStack(spacing: 16) {
                     Image(systemName: "square.stack.3d.up.fill")
                         .font(.system(size: 80))
-                        .foregroundColor(.primary)
-                    
+                        .foregroundColor(.vaultPrimary)
+
                     Text("Vault of Digital Content")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -24,7 +24,7 @@ struct AuthenticationView: View {
                     
                     Text("Your digital content, organized")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.vaultText)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 40)
@@ -60,10 +60,10 @@ struct AuthenticationView: View {
                             Text("Continue with Google")
                                 .fontWeight(.medium)
                         }
-                        .foregroundColor(.primary)
+                        .foregroundColor(.vaultPrimary)
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
-                        .background(Color(.systemGray6))
+                        .background(Color.vaultBackground)
                         .cornerRadius(8)
                     }
                     
@@ -77,20 +77,20 @@ struct AuthenticationView: View {
                             Text("Continue with Email")
                                 .fontWeight(.medium)
                         }
-                        .foregroundColor(.primary)
+                        .foregroundColor(.vaultPrimary)
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
-                        .background(Color(.systemGray6))
+                        .background(Color.vaultBackground)
                         .cornerRadius(8)
                     }
                     
                     // Guest Access
                     Button(action: {
-                        // Allow guest access - will be handled in the app flow
+                        authViewModel.openAsGuest()
                     }) {
                         Text("Continue as Guest")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.vaultSecondaryText)
                     }
                 }
                 .padding(.horizontal, 32)
@@ -146,10 +146,10 @@ struct EmailAuthenticationView: View {
                 }) {
                     Text(isSignUp ? "Sign Up" : "Sign In")
                         .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.vaultBackground)
                         .frame(maxWidth: .infinity)
                         .frame(height: 50)
-                        .background(Color.blue)
+                        .background(Color.vaultText)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal, 32)
@@ -160,7 +160,7 @@ struct EmailAuthenticationView: View {
                 }) {
                     Text(isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up")
                         .font(.subheadline)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.vaultText)
                 }
                 
                 Spacer()

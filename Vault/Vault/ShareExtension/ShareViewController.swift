@@ -166,8 +166,8 @@ struct ShareExtensionView: View {
             let item = ContentItem(
                 title: title,
                 sourceURL: url,
-                category: selectedCategory,
-                sourceType: metadata.sourceType
+                category: selectedCategory.rawValue,
+                sourceType: metadata.sourceType.rawValue
             )
             item.itemDescription = description.isEmpty ? nil : description
             item.imageURL = imageURLString.isEmpty ? nil : URL(string: imageURLString)

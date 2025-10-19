@@ -61,12 +61,13 @@ final class NotificationManager: ObservableObject {
     
     private func scheduleNotification(for item: ContentItem, delay: Int) {
         let content = UNMutableNotificationContent()
-        content.title = getNotificationTitle(for: item.category)
+        let category = ContentCategory(rawValue: item.category) ?? .watch
+        content.title = getNotificationTitle(for: category)
         content.body = item.title
         content.sound = .default
         content.userInfo = [
             "itemId": item.id.uuidString,
-            "category": item.category.rawValue
+            "category": item.category
         ]
         
         // Attach image if available

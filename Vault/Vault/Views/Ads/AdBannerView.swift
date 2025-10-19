@@ -1,24 +1,41 @@
-import SwiftUI
 import GoogleMobileAds
+import SwiftUI
 
-struct AdBannerView: UIViewRepresentable {
-    let adUnitID: String = "ca-app-pub-3940256099942544/2934735716" // Test ID
-    
-    func makeUIView(context: Context) -> BannerView {
-        let banner = BannerView(adSize: AdSizeBanner)
-        banner.adUnitID = adUnitID
-        banner.rootViewController = UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }?.rootViewController
+public struct AdBannerView: UIViewRepresentable {
+    public typealias UIViewType = BannerView
+    let adSize: AdSize
+
+    init(_ adSize: AdSize) {
+        self.adSize = adSize
+    }
+
+    public func makeUIView(context: Context) -> BannerView {
+        let banner = BannerView(adSize: adSize)
+        banner.adUnitID = "ca-app-pub-3362935681837714/8392953389"
         banner.load(Request())
+        banner.delegate = context.coordinator
         return banner
     }
-    
-    func updateUIView(_ uiView: BannerView, context: Context) {}
+
+    public func updateUIView(_ uiView: BannerView, context: Context) {}
+
+    public func makeCoordinator() -> BannerCoordinator {
+        return BannerCoordinator()
+    }
+}
+
+public class BannerCoordinator: NSObject, BannerViewDelegate {
+    public func bannerViewDidReceiveAd(_ bannerView: BannerView) {
+        print("Banner loaded successfully")
+    }
+
+    public func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
+        print("Failed to load banner: \(error.localizedDescription)")
+    }
 }
 
 #Preview {
-    AdBannerView()
+    let adSize = currentOrientationAnchoredAdaptiveBanner(width: 375)
+    AdBannerView(adSize)
         .frame(height: 50)
 }

@@ -23,7 +23,7 @@ struct SettingsView: View {
                         } placeholder: {
                             Image(systemName: "person.circle.fill")
                                 .font(.system(size: 50))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.vaultPrimary)
                         }
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
@@ -33,7 +33,7 @@ struct SettingsView: View {
                                 .font(.headline)
                             Text(authViewModel.currentUser?.email ?? "")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.vaultSecondaryText)
                         }
                         
                         Spacer()
@@ -42,17 +42,17 @@ struct SettingsView: View {
                             Text("PRO")
                                 .font(.caption)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(.vaultBackground)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
-                                .background(Color.blue)
+                                .background(Color.vaultPrimary)
                                 .cornerRadius(4)
                         } else {
                             Button("Upgrade to Pro") {
                                 showingSubscriptionView = true
                             }
                             .font(.caption)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.vaultPrimary)
                         }
                     }
                     .padding(.vertical, 8)
@@ -65,11 +65,11 @@ struct SettingsView: View {
                     }) {
                         HStack {
                             Image(systemName: "globe")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.vaultPrimary)
                             Text("Language")
                             Spacer()
                             Text(currentLanguage.displayName)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.vaultSecondaryText)
                         }
                     }
                     
@@ -78,12 +78,12 @@ struct SettingsView: View {
                     }) {
                         HStack {
                             Image(systemName: "bell")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.vaultPrimary)
                             Text("Notifications")
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.vaultSecondaryText)
                         }
                     }
                 }
@@ -93,7 +93,7 @@ struct SettingsView: View {
                     if subscriptionManager.isPro {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.vaultPrimary)
                             Text("Pro Active")
                         }
                     } else {
@@ -102,12 +102,12 @@ struct SettingsView: View {
                         }) {
                             HStack {
                                 Image(systemName: "crown")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.vaultPrimary)
                                 Text("Upgrade to Pro")
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(.vaultPrimary)
                             }
                         }
                     }
@@ -135,14 +135,14 @@ struct SettingsView: View {
                         Text("Version")
                         Spacer()
                         Text("1.0.0")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.vaultSecondaryText)
                     }
                     
                     HStack {
                         Text("Build")
                         Spacer()
                         Text("1")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.vaultSecondaryText)
                     }
                 }
             }
@@ -190,14 +190,14 @@ struct LanguageSelectorView: View {
                             VStack(alignment: .leading) {
                                 Text(language.displayName)
                                     .font(.headline)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(.vaultText)
                             }
                             
                             Spacer()
                             
                             if selectedLanguage == language {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Color.vaultPrimary)
                                     .font(.title2)
                             }
                         }
@@ -268,7 +268,7 @@ struct NotificationSettingsView: View {
                                     Spacer()
                                     if notificationFrequency == frequency {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(.blue)
+                                            .foregroundColor(Color.vaultPrimary)
                                     }
                                 }
                             }

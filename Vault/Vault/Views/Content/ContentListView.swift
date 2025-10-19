@@ -14,7 +14,7 @@ struct ContentListView: View {
     init(category: ContentCategory) {
         self.category = category
         let predicate = #Predicate<ContentItem> { item in
-            item.category == category
+            item.category == category.rawValue
         }
         _items = Query(filter: predicate, sort: \.dateAdded, order: .reverse)
     }
@@ -73,7 +73,7 @@ struct ContentListView: View {
                     HStack {
                         Text("\(items.count)/\(itemLimit) \(subscriptionManager.isPro ? "PRO" : "FREE")")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.vaultSecondaryText)
                     }
                 }
             }
@@ -96,7 +96,7 @@ struct ContentListView: View {
     }
     
     private var itemLimit: Int {
-        subscriptionManager.isPro ? Int.max : 10
+        subscriptionManager.isPro ? Int.max : 5
     }
     
     private func deleteItems(at offsets: IndexSet) {
@@ -113,6 +113,7 @@ struct ItemRowView: View {
     
     var body: some View {
         HStack(spacing: 12) {
+            let sourceType = SourceType(rawValue: item.sourceType) ?? .unknown
             if let imageURL = item.imageURL {
                 AsyncImage(url: imageURL) { image in
                     image
@@ -120,22 +121,22 @@ struct ItemRowView: View {
                         .aspectRatio(contentMode: .fill)
                 } placeholder: {
                     Rectangle()
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.vaultPrimary.opacity(0.2))
                         .overlay(
-                            Image(systemName: item.sourceType.icon)
-                                .foregroundColor(.gray)
+                            Image(systemName: sourceType.icon)
+                                .foregroundColor(.vaultPrimary)
                         )
                 }
                 .frame(width: 60, height: 60)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Rectangle()
-                    .fill(Color.gray.opacity(0.2))
+                    .fill(Color.vaultPrimary.opacity(0.2))
                     .frame(width: 60, height: 60)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay(
-                        Image(systemName: item.sourceType.icon)
-                            .foregroundColor(.gray)
+                        Image(systemName: sourceType.icon)
+                            .foregroundColor(.vaultPrimary)
                     )
             }
             
@@ -147,19 +148,19 @@ struct ItemRowView: View {
                 if let description = item.itemDescription {
                     Text(description)
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.vaultSecondaryText)
                         .lineLimit(2)
                 }
                 
                 HStack {
-                    Image(systemName: item.sourceType.icon)
+                    Image(systemName: sourceType.icon)
                         .font(.caption)
-                        .foregroundColor(.secondary)
-                    
+                        .foregroundColor(.vaultPrimary)
+
                     Text(item.dateAdded, style: .relative)
                         .font(.caption)
-                        .foregroundColor(.secondary)
-                    
+                        .foregroundColor(.vaultSecondaryText)
+
                     Spacer()
                     
                     if let subcategory = item.subcategory {
@@ -167,8 +168,8 @@ struct ItemRowView: View {
                             .font(.caption2)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
-                            .background(Color.blue.opacity(0.1))
-                            .foregroundColor(.blue)
+                            .background(Color.vaultSecondary.opacity(0.1))
+                            .foregroundColor(.vaultPrimary)
                             .cornerRadius(4)
                     }
                 }

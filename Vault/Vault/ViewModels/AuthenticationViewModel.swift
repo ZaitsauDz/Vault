@@ -1,9 +1,26 @@
-import SwiftUI
-import GoogleSignIn
-import FirebaseAuth
 import AuthenticationServices
 import Combine
+import FirebaseAuth
 import FirebaseCore
+import GoogleSignIn
+import SwiftUI
+
+enum AuthError: Error, LocalizedError {
+    case invalidCredentials
+    case networkError
+    case unknownError
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidCredentials:
+            return "Invalid credentials provided"
+        case .networkError:
+            return "Network connection error"
+        case .unknownError:
+            return "An unknown error occurred"
+        }
+    }
+}
 
 @MainActor
 final class AuthenticationViewModel: ObservableObject {
@@ -14,6 +31,7 @@ final class AuthenticationViewModel: ObservableObject {
     enum AuthState {
         case unauthenticated
         case authenticating
+        case guest
         case authenticated(User)
     }
     
@@ -24,7 +42,7 @@ final class AuthenticationViewModel: ObservableObject {
     }
     
     private func setupAuthStateListener() {
-        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+        _ = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             DispatchQueue.main.async {
                 if let user = user {
                     self?.authState = .authenticated(user)
@@ -40,33 +58,15 @@ final class AuthenticationViewModel: ObservableObject {
     func signInWithApple() async {
         authState = .authenticating
         
-//        let request = ASAuthorizationAppleIDProvider().createRequest()
-//        request.requestedScopes = [.email, .fullName]
-//        
-//        do {
-//            let result = try await ASAuthorizationController(
-//                authorizationRequests: [request]
-//            ).performRequests()
-//            
-//            guard let appleIDCredential = result.first?.credential as? ASAuthorizationAppleIDCredential,
-//                  let identityToken = appleIDCredential.identityToken,
-//                  let idTokenString = String(data: identityToken, encoding: .utf8) else {
-//                throw AuthError.invalidCredentials
-//            }
-//            
-//            let credential = OAuthProvider.credential(
-//                withProviderID: "apple.com",
-//                idToken: idTokenString,
-//                rawNonce: nil
-//            )
-//            
-//            let authResult = try await Auth.auth().signIn(with: credential)
-//            // Auth state will be updated via listener
-//            
-//        } catch {
-//            errorMessage = error.localizedDescription
-//            authState = .unauthenticated
-//        }
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        let delegate = SignInViewController()
+        delegate.viewModel = self
+        controller.delegate = delegate
+        controller.presentationContextProvider = delegate
+        controller.performRequests()
     }
     
     func signInWithGoogle() async {
@@ -141,21 +141,52 @@ final class AuthenticationViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    func openAsGuest() {
+        authState = .guest
+    }
+
+    func handleAppleSignInFailure(_ error: Error) {
+        errorMessage = error.localizedDescription
+        authState = .unauthenticated
+    }
 }
 
-enum AuthError: Error, LocalizedError {
-    case invalidCredentials
-    case networkError
-    case unknownError
-    
-    var errorDescription: String? {
-        switch self {
-        case .invalidCredentials:
-            return "Invalid credentials provided"
-        case .networkError:
-            return "Network connection error"
-        case .unknownError:
-            return "An unknown error occurred"
+class SignInViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    weak var viewModel: AuthenticationViewModel?
+
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        let connectedScene = UIApplication.shared.connectedScenes
+        let windowScene = connectedScene.first { $0.activationState == .foregroundActive } as? UIWindowScene
+        let keyWindow = windowScene?.windows.first { $0.isKeyWindow }
+        return keyWindow ?? UIWindow()
+    }
+
+    private func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) async {
+        do {
+            if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+               let identityToken = appleIDCredential.identityToken,
+               let idTokenString = String(data: identityToken, encoding: .utf8)
+            {
+                let userIdentifier = appleIDCredential.user
+                let fullName = appleIDCredential.fullName
+                let email = appleIDCredential.email
+
+                let credential = OAuthProvider.credential(
+                    providerID: .apple,
+                    idToken: idTokenString
+                )
+
+                let authResult = try await Auth.auth().signIn(with: credential)
+            } else {
+                throw AuthError.invalidCredentials
+            }
+        } catch {
+            viewModel?.handleAppleSignInFailure(error)
         }
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error
     }
 }
