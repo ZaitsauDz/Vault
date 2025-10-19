@@ -1,0 +1,112 @@
+/* Authentication */
+"auth.welcome.title" = "Добро пожаловать в Vault";
+"auth.welcome.subtitle" = "Ваш цифровой контент, организованный";
+"auth.signIn.apple" = "Войти через Apple";
+"auth.signIn.google" = "Продолжить с Google";
+"auth.signIn.email" = "Продолжить с Email";
+"auth.guest" = "Продолжить как гость";
+"auth.authenticating" = "Аутентификация...";
+
+/* Categories */
+"category.watch" = "Посмотреть позже";
+"category.read" = "Прочитать позже";
+"category.buy" = "Купить позже";
+"category.cook" = "Приготовить позже";
+
+/* Common */
+"common.save" = "Сохранить";
+"common.cancel" = "Отмена";
+"common.delete" = "Удалить";
+"common.edit" = "Редактировать";
+"common.search" = "Поиск";
+"common.close" = "Закрыть";
+"common.next" = "Далее";
+"common.back" = "Назад";
+"common.getStarted" = "Начать";
+"common.add" = "Добавить";
+"common.addItem" = "Добавить элемент";
+"common.loading" = "Загрузка...";
+"common.error" = "Ошибка";
+"common.ok" = "ОК";
+
+/* Onboarding */
+"onboarding.welcome.title" = "Добро пожаловать в Vault";
+"onboarding.welcome.subtitle" = "Организуйте свой цифровой контент по четырем категориям: Посмотреть позже, Прочитать позже, Купить позже и Приготовить позже.";
+"onboarding.language.title" = "Выберите язык";
+"onboarding.language.subtitle" = "Выберите предпочитаемый язык для интерфейса приложения.";
+"onboarding.notifications.title" = "Настройки уведомлений";
+"onboarding.notifications.subtitle" = "Получайте мягкие напоминания о взаимодействии с сохраненным контентом.";
+"onboarding.notifications.enable" = "Включить уведомления";
+"onboarding.notifications.frequency" = "Частота напоминаний";
+
+/* Content */
+"content.noItems.title" = "Нет элементов";
+"content.noItems.subtitle" = "Начните сохранять %@ контент";
+"content.itemLimit.title" = "Достигнут лимит элементов";
+"content.itemLimit.message" = "Бесплатные пользователи ограничены %d элементами в каждой категории. Перейдите на Pro для неограниченного хранилища.";
+"content.itemLimit.upgrade" = "Перейти на Pro";
+"content.addItem.title" = "Добавить новый элемент";
+"content.addItem.url" = "URL";
+"content.addItem.category" = "Категория";
+"content.addItem.details" = "Детали";
+"content.addItem.title" = "Введите заголовок";
+"content.addItem.description" = "Введите описание";
+"content.addItem.imageUrl" = "URL изображения (необязательно)";
+"content.addItem.fetch" = "Получить";
+"content.addItem.loading" = "Загрузка метаданных...";
+"content.addItem.unsupportedSource" = "В бесплатной версии доступны только YouTube, Instagram, Amazon и Apple Books. Перейдите на Pro для большего количества источников.";
+
+/* Item Detail */
+"item.detail.title" = "Детали элемента";
+"item.detail.openOriginal" = "Открыть оригинал";
+"item.detail.delete.title" = "Удалить элемент";
+"item.detail.delete.message" = "Вы уверены, что хотите удалить этот элемент? Это действие нельзя отменить.";
+
+/* Subscription */
+"subscription.title" = "Перейти на Pro";
+"subscription.subtitle" = "Разблокируйте неограниченное хранилище и премиум-функции";
+"subscription.feature.unlimited" = "Неограниченное количество элементов";
+"subscription.feature.noAds" = "Без рекламы";
+"subscription.feature.allSources" = "Поддержка всех источников";
+"subscription.feature.icloud" = "Синхронизация iCloud";
+"subscription.feature.family" = "Семейный доступ";
+"subscription.mostPopular" = "САМЫЙ ПОПУЛЯРНЫЙ";
+"subscription.subscribe" = "Подписаться";
+"subscription.restore" = "Восстановить покупки";
+"subscription.proActive" = "Pro активен";
+
+/* Settings */
+"settings.title" = "Настройки";
+"settings.profile" = "Профиль";
+"settings.appSettings" = "Настройки приложения";
+"settings.language" = "Язык";
+"settings.notifications" = "Уведомления";
+"settings.subscription" = "Подписка";
+"settings.account" = "Аккаунт";
+"settings.about" = "О приложении";
+"settings.version" = "Версия";
+"settings.build" = "Сборка";
+"settings.signOut" = "Выйти";
+"settings.upgradeToPro" = "Перейти на Pro";
+
+/* Notifications */
+"notifications.title" = "Уведомления";
+"notifications.subtitle" = "Получайте мягкие напоминания о взаимодействии с сохраненным контентом.";
+"notifications.enable" = "Включить уведомления";
+"notifications.frequency" = "Частота";
+"notifications.daily" = "Ежедневно";
+"notifications.weekly" = "Еженедельно";
+"notifications.monthly" = "Ежемесячно";
+
+/* Language */
+"language.title" = "Язык";
+"language.english" = "English";
+"language.russian" = "Русский";
+
+/* Errors */
+"error.invalidUrl" = "Неверный URL";
+"error.networkError" = "Ошибка сетевого подключения";
+"error.parsingFailed" = "Не удалось разобрать метаданные";
+"error.saveFailed" = "Не удалось сохранить элемент";
+"error.purchaseFailed" = "Покупка не удалась";
+"error.restoreFailed" = "Восстановление покупок не удалось";

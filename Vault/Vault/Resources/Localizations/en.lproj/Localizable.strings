@@ -1,0 +1,112 @@
+/* Authentication */
+"auth.welcome.title" = "Welcome to Vault";
+"auth.welcome.subtitle" = "Your digital content, organized";
+"auth.signIn.apple" = "Sign in with Apple";
+"auth.signIn.google" = "Continue with Google";
+"auth.signIn.email" = "Continue with Email";
+"auth.guest" = "Continue as Guest";
+"auth.authenticating" = "Authenticating...";
+
+/* Categories */
+"category.watch" = "Watch Later";
+"category.read" = "Read Later";
+"category.buy" = "Buy Later";
+"category.cook" = "Cook Later";
+
+/* Common */
+"common.save" = "Save";
+"common.cancel" = "Cancel";
+"common.delete" = "Delete";
+"common.edit" = "Edit";
+"common.search" = "Search";
+"common.close" = "Close";
+"common.next" = "Next";
+"common.back" = "Back";
+"common.getStarted" = "Get Started";
+"common.add" = "Add";
+"common.addItem" = "Add Item";
+"common.loading" = "Loading...";
+"common.error" = "Error";
+"common.ok" = "OK";
+
+/* Onboarding */
+"onboarding.welcome.title" = "Welcome to Vault";
+"onboarding.welcome.subtitle" = "Organize your digital content across four categories: Watch Later, Read Later, Buy Later, and Cook Later.";
+"onboarding.language.title" = "Choose Your Language";
+"onboarding.language.subtitle" = "Select your preferred language for the app interface.";
+"onboarding.notifications.title" = "Notification Preferences";
+"onboarding.notifications.subtitle" = "Get gentle reminders to engage with your saved content.";
+"onboarding.notifications.enable" = "Enable Notifications";
+"onboarding.notifications.frequency" = "Reminder Frequency";
+
+/* Content */
+"content.noItems.title" = "No Items";
+"content.noItems.subtitle" = "Start saving %@ content";
+"content.itemLimit.title" = "Item Limit Reached";
+"content.itemLimit.message" = "Free users are limited to %d items per category. Upgrade to Pro for unlimited storage.";
+"content.itemLimit.upgrade" = "Upgrade to Pro";
+"content.addItem.title" = "Add New Item";
+"content.addItem.url" = "URL";
+"content.addItem.category" = "Category";
+"content.addItem.details" = "Details";
+"content.addItem.title" = "Enter title";
+"content.addItem.description" = "Enter description";
+"content.addItem.imageUrl" = "Image URL (optional)";
+"content.addItem.fetch" = "Fetch";
+"content.addItem.loading" = "Loading metadata...";
+"content.addItem.unsupportedSource" = "Only YouTube, Instagram, Amazon, and Apple Books are available in the free version. Please upgrade to Pro for more sources.";
+
+/* Item Detail */
+"item.detail.title" = "Item Details";
+"item.detail.openOriginal" = "Open Original";
+"item.detail.delete.title" = "Delete Item";
+"item.detail.delete.message" = "Are you sure you want to delete this item? This action cannot be undone.";
+
+/* Subscription */
+"subscription.title" = "Upgrade to Pro";
+"subscription.subtitle" = "Unlock unlimited storage and premium features";
+"subscription.feature.unlimited" = "Unlimited items";
+"subscription.feature.noAds" = "No advertisements";
+"subscription.feature.allSources" = "Support for all sources";
+"subscription.feature.icloud" = "iCloud sync";
+"subscription.feature.family" = "Family sharing";
+"subscription.mostPopular" = "MOST POPULAR";
+"subscription.subscribe" = "Subscribe";
+"subscription.restore" = "Restore Purchases";
+"subscription.proActive" = "Pro Active";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.profile" = "Profile";
+"settings.appSettings" = "App Settings";
+"settings.language" = "Language";
+"settings.notifications" = "Notifications";
+"settings.subscription" = "Subscription";
+"settings.account" = "Account";
+"settings.about" = "About";
+"settings.version" = "Version";
+"settings.build" = "Build";
+"settings.signOut" = "Sign Out";
+"settings.upgradeToPro" = "Upgrade to Pro";
+
+/* Notifications */
+"notifications.title" = "Notifications";
+"notifications.subtitle" = "Get gentle reminders to engage with your saved content.";
+"notifications.enable" = "Enable Notifications";
+"notifications.frequency" = "Frequency";
+"notifications.daily" = "Daily";
+"notifications.weekly" = "Weekly";
+"notifications.monthly" = "Monthly";
+
+/* Language */
+"language.title" = "Language";
+"language.english" = "English";
+"language.russian" = "Русский";
+
+/* Errors */
+"error.invalidUrl" = "Invalid URL";
+"error.networkError" = "Network connection error";
+"error.parsingFailed" = "Failed to parse metadata";
+"error.saveFailed" = "Failed to save item";
+"error.purchaseFailed" = "Purchase failed";
+"error.restoreFailed" = "Restore purchases failed";
